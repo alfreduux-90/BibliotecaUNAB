@@ -8,12 +8,14 @@ public class Usuario implements java.io.Serializable{
     private char Genero;
     private int prestamo;
     //Constructor
+    
     public Usuario(String Nombre, String Run, char Genero) {
         this.Nombre = Nombre;
         setRut(Run);//this.Run = Run;
         setGenero(Genero);//this.Genero = Genero;
         setPrestamo(prestamo);//this.prestamo = 0;
     }
+    
     //El constructor sin parámetros sirve para cuando se creal el objeto y los datos los setea con el set.
     public Usuario() {
         this.Nombre = "";
@@ -28,7 +30,7 @@ public class Usuario implements java.io.Serializable{
     }
 
     public void setRut(String Run) {
-        if(validarCedula(Run)&& ValidarExisRun (Run))
+        if(validarRut(Run))
         this.Run = Run;
     }
 
@@ -65,28 +67,7 @@ public class Usuario implements java.io.Serializable{
     }
     //VALIDACIONES
     //VALIDAR RUT ejecutadas por set
-    public boolean validarCedula (String _ced){
-        char penChar, lastChar;
-        penChar = _ced.charAt(8);
-        lastChar = _ced.charAt(9);
-        boolean digit = (Character.isDigit(lastChar));
-        boolean K = 'K'==lastChar;
-        if (_ced.length() != 10){
-            sendMsj(" \nERROR... RUT Cliente mal ingresado, distinto de 10 caracteres");
-            return false;
-            }else{
-                    if ('-'!=penChar){
-                        sendMsj(" \nERROR... RUT Cliente mal ingresado, sin guíon");
-                        return false;
-                        }else{
-                            if (!digit && !K){
-                                sendMsj(" \nERROR... RUT Cliente mal ingresado, no es número ni K");
-                                return false;
-                        }
-                    }   
-            return true;
-        }     
-    }
+
     
     //public boolean ValidarExisRun(String _ced){
     //    boolean retVal = true;
@@ -99,16 +80,25 @@ public class Usuario implements java.io.Serializable{
     //    return retVal;
     //}
     
-    public boolean ValidarExisRun(String _ced){
-        Usuario usr[] = new u[20];
-        for (int i=0;i<usr.length;i++){
-            usr[i] = u;
-            if(_ced.equals(usr[i].getRut())){
-                 return false;
-            }
-        }
-        return true;
-    }
+    //public boolean buscarRut(Usuario _u[]){  //recibe el arreglo de usuarios desde el main
+    //    boolean retVal = false;
+    //    for (Usuario _u1 : _u) {
+    //        if (getRut().equals(_u1.getRut())) {
+    //            retVal = true;
+    //        }
+    //    }
+    //   return retVal;
+    //}
+    
+    //public boolean buscarRut (String _ced){
+    //    Usuario _u[] = new Usuario[20];
+    //    for (Usuario _u1 : _u) {
+    //        if (getRut().equals(_u1.getRut())) {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
     
     
      // public boolean ValidarExisRun(String _ced){
@@ -126,11 +116,33 @@ public class Usuario implements java.io.Serializable{
      //   return true;
     //}
     
+        //Customers 
+    
+        public static boolean buscarUsuario(Usuario presUser[], String run){
+            //Usuario presUser[] = new Usuario();
+            int i= 0;
+            while (presUser[i]!=null){
+                if(run.equals(presUser[i].getRut()))
+                return true;
+            i++;
+         }
+        return false;
+        }
+        
+        public static void mostrar_usuarios(Usuario[] usr){
+            System.out.println("\nUSUARIOS INGRESADOS AL SISTEMA:");
+                for (Usuario usr1 : usr) {
+                    System.out.println(usr1.toString());
+        }
+        }
+    
+     // validaciones
+        
     public boolean validarGenero(char gen){
         if ((gen== 'F') || (gen=='M'))
             return true;
         else{
-        System.out.println("El genero ingresado no es correcto");
+            System.out.println("El genero ingresado no es correcto");
         return false;
         }
     }
@@ -142,6 +154,29 @@ public class Usuario implements java.io.Serializable{
             System.out.println("Este usuario ya tiene asignado un libro");
         }
         return retVal;
+    }
+        
+        public boolean validarRut (String _ced){
+            char penChar, lastChar;
+            penChar = _ced.charAt(8);
+            lastChar = _ced.charAt(9);
+            boolean digit = (Character.isDigit(lastChar));
+            boolean K = 'K'==lastChar;
+                if (_ced.length() != 10){
+                    sendMsj(" \nERROR... RUT Cliente mal ingresado, distinto de 10 caracteres");
+                return false;
+                }else{
+                    if ('-'!=penChar){
+                        sendMsj(" \nERROR... RUT Cliente mal ingresado, sin guíon");
+                            return false;
+                            }else{
+                                if (!digit && !K){
+                                    sendMsj(" \nERROR... RUT Cliente mal ingresado, no es número ni K");
+                                return false;
+                        }
+                    }   
+            return true;
+        }     
     }
         
         //Metodo que recibe el mensaje a mostrar en la clase

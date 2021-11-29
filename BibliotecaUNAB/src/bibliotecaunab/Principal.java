@@ -53,7 +53,7 @@ public class Principal {
             System.out.println("\nError de tipo de datos al ingresar su opción:"+e.toString());
         }
         
-    }//fin del mÃ©todo main
+    }//fin del metodo main
         public static boolean buscarUsuario(Usuario presUser[], String run){
         int i= 0;
         while (presUser[i]!=null){
@@ -92,6 +92,7 @@ public class Principal {
         usr[3] = new Usuario("Camila Ortiz","19888830-3",'F');
         usr[4] = new Usuario("Felipe Catalán","16810930-4",'M');
         usr[5] = new Usuario("Alfredo Cid","17888830-7",'M');
+        
         
         Libro[] lib = new Libro[20];
         lib[0] = new Libro(23423,10,10,"En Silencio","David Ouimet");

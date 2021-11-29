@@ -90,7 +90,8 @@ public class Principal {
         usr[1] = new Usuario("Angela Trivinos","17567830-4",'F');
         usr[2] = new Usuario("Marcela Fuentealba","15678860-4",'F');
         usr[3] = new Usuario("Camila Ortiz","19888830-3",'F');
-        usr[4] = new Usuario("Felipe Catalán","16810930-4",'M');      
+        usr[4] = new Usuario("Felipe Catalán","16810930-4",'M');
+        usr[5] = new Usuario("Alfredo Cid","17888830-7",'M');
         
         Libro[] lib = new Libro[20];
         lib[0] = new Libro(23423,10,10,"En Silencio","David Ouimet");
@@ -117,7 +118,7 @@ public class Principal {
         }catch (Exception e){
             System.out.println("ERROR 2 al escribir libros.dat:"+e.getMessage());
         }
-    }//fin mÃ©todo cargar_archivos()
+    }//fin metodo cargar_archivos()
     
     
 }

@@ -35,7 +35,7 @@ public class Docente extends Usuario{
 
     @Override
     public String toString() {
-        return "Docente{" + "profesion=" + profesion + ", grado=" + grado + '}';
+        return "Docente{" + "profesion=" + profesion + ", grado=" + grado +super.toString()+ '}';
     }
     
 }

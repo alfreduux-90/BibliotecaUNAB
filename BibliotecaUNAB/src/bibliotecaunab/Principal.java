@@ -18,14 +18,14 @@ public class Principal {
         cargar_archivos(); //enabled / disabled
         try{
             //Leer los objetos clientes desde clientes.dat y los guarda en el arreglo arrCli
-            String nombre = "usuarios.dat";   
-            FileInputStream filen = new FileInputStream(nombre);
+            String nombre_u = "usuarios.dat";   
+            FileInputStream filen = new FileInputStream(nombre_u);
             ObjectInputStream objE = new ObjectInputStream(filen);
-            Usuario[] presUser = (Usuario[])objE.readObject(); 
+            Usuario[] presUser = (Usuario[])objE.readObject();
             objE.close();
             //Leer los objetos Libros desde libros.dat y los guarda en el arreglo presLib
-            nombre = "libros.dat";   
-            filen = new FileInputStream(nombre);
+            String nombre_l = "libros.dat";   
+            filen = new FileInputStream(nombre_l);
             objE = new ObjectInputStream(filen);
             Libro[] presLib = (Libro[])objE.readObject(); 
             objE.close();
@@ -35,10 +35,29 @@ public class Principal {
              System.out.println("\n\t Ingrese los datos del nuevo usuario");
              InputStreamReader en = new InputStreamReader(System.in);
              BufferedReader entrada = new BufferedReader(en);
-
-                    Usuario usr = new Usuario("Patricio Amonacid","17888830-7",'M');
+                         for (int i=0;i<presUser.length;i++){
+                //if (presUser[i].buscarUsuario(presUser)== true){
+                //    System.out.println("OK");
+                //}else{
+                //    System.out.println("No OK");
+               // }
+               /*if (presUser[i]!=null){
+                   if (presUser[i].buscarRut(presUser)){
+                    System.out.println (presUser[i]+ "   dentro");   
+                   }        
+                }*/
+            } 
+                         
+                    Usuario usr = new Estudiante("ICI","Patricio Amonacid","16810930-3",'M');
+                    if (usr.buscarRut(presUser)==false){
                     presUser[numero_usuarios] = usr;
-                    numero_usuarios = mostrar_usuarios(presUser);
+                        System.out.println(usr);
+                    }else{
+                        usr = null;
+                        System.out.println("Usuario no ingresado");
+                    }                    
+                    
+                    //numero_usuarios = mostrar_usuarios(presUser);
              
           //  System.out.println("\n\t**** MOSTRAR LIBROS...*****  ");
           //   int numero_libros = mostrar_libros(presLib);
@@ -84,15 +103,14 @@ public class Principal {
     }//fin del mÃ©todo main
 
     public static void cargar_archivos() throws IOException{
-                //creo los objetos para insertarlos a los archivos
+        //creo los objetos para insertarlos a los archivos
         Usuario[] usr = new Usuario[20];
-        usr[0] = new Usuario("Patricio Amonacid","17888830-7",'M');
-        usr[1] = new Usuario("Angela Trivinos","17567830-4",'F');
-        usr[2] = new Usuario("Marcela Fuentealba","15678860-4",'F');
-        usr[3] = new Usuario("Camila Ortiz","19888830-3",'F');
-        usr[4] = new Usuario("Felipe Catalán","16810930-4",'M');
-        usr[5] = new Usuario("Alfredo Cid","17888830-7",'M');
-        
+        usr[0] = new Estudiante("Ing Civil Minas","Patricio Amonacid","17888830-7",'M');
+        usr[1] = new Estudiante("ICI","Angela Trivinos","17567830-4",'F');
+        usr[2] = new Docente("Ing","Dra","Marcela Fuentealba","15678860-4",'F');
+        usr[3] = new Estudiante("SSS","Camila Ortiz","19888830-3",'F');
+        usr[4] = new Estudiante("ssa","Felipe Catalán","16810930-4",'M');
+        usr[5] = new Estudiante("kdkdd","Alfredo Cid","17888830-7",'M');
         
         Libro[] lib = new Libro[20];
         lib[0] = new Libro(23423,10,10,"En Silencio","David Ouimet");

@@ -118,11 +118,11 @@ public class Usuario implements java.io.Serializable{
     
         //Customers 
     
-        public static boolean buscarUsuario(Usuario presUser[], String run){
+        public boolean buscarRut(Usuario presUser[]){   //Usuario incompatible con Usuario[] 
             //Usuario presUser[] = new Usuario();
             int i= 0;
             while (presUser[i]!=null){
-                if(run.equals(presUser[i].getRut()))
+                if(getRut().equals(presUser[i].getRut()))
                 return true;
             i++;
          }

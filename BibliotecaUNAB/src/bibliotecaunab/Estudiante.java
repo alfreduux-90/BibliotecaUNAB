@@ -23,7 +23,7 @@ public class Estudiante extends Usuario{
 
     @Override
     public String toString() {
-        return "Estudiante{" + "Carrera=" + Carrera + '}';
+        return "Estudiante{" + "Carrera=" + Carrera +" "+ super.toString()+"}";
     }
     
 }
